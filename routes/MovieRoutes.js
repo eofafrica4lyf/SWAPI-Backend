@@ -1,12 +1,6 @@
 const router = require("express").Router();
-const models = require("../models");
+const MovieController = require("../controllers/MovieController.js");
 
-router.get("/", async (req, res, next) => {
-    const v = await models.comment.findAll({
-        where: {}
-    })
-
-    res.json(v);
-})
+router.get("/", MovieController.getAll)
 
 module.exports = router;
