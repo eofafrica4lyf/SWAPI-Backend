@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "migrate": "node ./database/migration/index.js",
+    "seed": "node ./database/seed/index.js"
   },
   "repository": {
     "type": "git",
