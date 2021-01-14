@@ -1,0 +1,41 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "SWAPI Api documentation",
+        "version": "1.0.0",
+        "title": "SWAPI API Doc",
+        "contact": {
+            "email": "aboderinemmanuel@gmail.com"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "movies",
+            "description": "Everything about movies"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/movies": {
+            "get": {
+                "tags": ["movies"],
+                "summary": "Get all movies",
+                "description": "Endpoint to get all movies",
+                "produces" : ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "{success: true, message: '', data: movies}"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
