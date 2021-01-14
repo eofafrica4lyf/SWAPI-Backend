@@ -1,0 +1,30 @@
+{
+  "name": "swapi-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eofafrica4lyf/SWAPI-Backend.git"
+  },
+  "author": "Emmanuel Aboderin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eofafrica4lyf/SWAPI-Backend/issues"
+  },
+  "homepage": "https://github.com/eofafrica4lyf/SWAPI-Backend#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.3.1",
+    "hpp": "^0.2.3",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
