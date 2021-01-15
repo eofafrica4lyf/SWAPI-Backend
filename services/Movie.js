@@ -1,6 +1,6 @@
 const axios = require("../axios");
 const ErrorHandler = require("../utils/ErrorHandler");
-const publicIp = require("public-ip")
+const publicIp = require("public-ip");
 const models = require("../models");
 
 class Movie{

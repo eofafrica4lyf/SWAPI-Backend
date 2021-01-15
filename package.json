@@ -9,7 +9,16 @@
     "migrate": "node ./database/migration/index.js",
     "seed": "node ./database/seed/index.js",
     "test": "NODE_ENV=testing mocha --recursive --exit 'test'",
+    "test:migrate": "NODE_ENV=testing node ./database/migration/index.js",
     "test:coverage": "NODE_ENV=testing nyc --reporter=html --reporter=text npm run test"
+  },
+  "nyc": {
+    "include": [
+      "services",
+      "test",
+      "utils",
+      "validation"
+    ]
   },
   "repository": {
     "type": "git",
