@@ -1,7 +1,8 @@
 const catchAsyncError = require("../middleware/catchAsyncError");
 const Movie = require("../services/Movie");
 const {
-    postCommentValidation
+    postCommentValidation,
+    movieIdValidation
 } = require("../validation/MovieValidation");
 
 /**
@@ -27,6 +28,22 @@ exports.getAll = catchAsyncError( async (req, res, next) => {
 exports.addComment = catchAsyncError( async (req, res, next) => {
     const validatedData = await postCommentValidation(req.body);
     const data = await Movie.addComment(validatedData);
+
+    return res.status(200).json({
+        success: true,
+        message: "",
+        data
+    })
+})
+
+/**
+ * @route GET /v1/movies
+ * @desc Get all movies
+ * @access Public
+ */
+exports.getSingleMovieComments = catchAsyncError( async (req, res, next) => {
+    const validatedData = await movieIdValidation(req.params);
+    const data = await Movie.getSingleMovieComments(validatedData);
 
     return res.status(200).json({
         success: true,

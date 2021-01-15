@@ -46,6 +46,20 @@ class Movie{
             publicIp: ip
         })
     }
+
+    /**
+     * @desc Get all comments on a movie
+     * @param {*} data
+     */
+    static async getSingleMovieComments ({ movieId }) {
+        return await models.comment.findAll({
+            where: {
+                movieId
+            },
+            attributes: ["comment", "publicIp", "utc"],
+            order: [["createdAt", "DESC"]]
+        })
+    }
 }
 
 module.exports = Movie;
