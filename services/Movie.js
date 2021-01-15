@@ -30,7 +30,6 @@ class Movie{
                 }))
             return movies.data;
         } catch (error) {
-            console.log(error)
             throw new ErrorHandler("Some error occured", 500)
         }
     }
@@ -44,7 +43,8 @@ class Movie{
         return await models.comment.create({
             movieId,
             comment,
-            publicIp: ip
+            publicIp: ip,
+            utc: new Date().toUTCString()
         })
     }
 
