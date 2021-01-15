@@ -43,7 +43,8 @@ class Movie{
         return await models.comment.create({
             movieId,
             comment,
-            publicIp: ip
+            publicIp: ip,
+            utc: new Date().toUTCString()
         })
     }
 
