@@ -30,6 +30,7 @@ class Movie{
                 }))
             return movies.data;
         } catch (error) {
+            console.log(error)
             throw new ErrorHandler("Some error occured", 500)
         }
     }
