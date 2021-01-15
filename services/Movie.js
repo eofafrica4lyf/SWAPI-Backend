@@ -106,6 +106,7 @@ class Movie{
                 }
             }
         } catch (error) {
+            console.log(error)
             throw new ErrorHandler("Some error occured", 500)
         }
     }
