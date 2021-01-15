@@ -22,3 +22,17 @@ exports.postCommentValidation = (data) => {
         abortEarly: false
     });
 }
+
+exports.movieIdValidation = async (data) => {
+    data.movieId = !isNaN(data.movieId) ? parseInt(data.movieId) : "";
+    const movieIdSchema = Joi.object({
+        movieId: Joi.number().min(1).required().messages({
+            "number.base": "Movie id must be a number",
+            "number.min": "Invalid movie id",
+            "any.required": "Movie id is required"
+        })
+    });
+    return await movieIdSchema.validateAsync(data, {
+        abortEarly: false
+    });
+};

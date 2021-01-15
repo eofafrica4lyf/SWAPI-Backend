@@ -65,6 +65,30 @@
                     }
                 }
             }
+        },
+        "/movies/{movieId}/comments": {
+            "get": {
+                "tags": ["comments"],
+                "summary": "Get all comments on a movie",
+                "description": "Endpoint to get all comments on a movie",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "movieId",
+                        "in": "path",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{success: true, message: '', data: movieComments}"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
         }
     },
     "definitions": {
