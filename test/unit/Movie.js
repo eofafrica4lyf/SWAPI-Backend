@@ -1,8 +1,10 @@
+require("dotenv").config();
 const Movie = require("../../services/Movie");
 const sinon = require("sinon");
 const axios = require("../../axios");
 const chai = require("chai");
 const expect = chai.expect;
+const publicIp = require("public-ip");
 
 let moviesStub = {
     data: {
@@ -40,28 +42,52 @@ let moviesStub = {
     somethingelse: ""
 }
 let axiosStub;
-describe('getAll Service', () => {
-    before(async function () {
-        axiosStub = sinon.stub(axios, "get");
-    })
-    it("should successfully get a list of all movies on the SWAPI", async function () {
-        axiosStub.returns(moviesStub);
-        const result = await Movie.getAll();
+describe('Movie', () => {
+    describe('getAll Service', () => {
+        before(async function () {
+            axiosStub = sinon.stub(axios, "get");
+        })
+        it("should successfully get a list of all movies on the SWAPI", async function () {
+            axiosStub.returns(moviesStub);
+            const result = await Movie.getAll();
+    
+            expect(result.count).to.be.equal(5);
+            expect(result.previous).to.be.null;
+            expect(result.results.length).to.be.equal(5);
+        })
+        it("should throw if an an error occurs", async function () {
+            axiosStub.throws("ksdfs");
+            try {
+                await Movie.getAll();
+            } catch (error) {
+                expect(error.message).to.be.equal("Some error occured");
+                expect(error.statusCode).to.be.equal(500);
+            }
+        })
+        after(async function() {
+            axiosStub.restore();
+        })
+    })//end of getAll Service
 
-        expect(result.count).to.be.equal(5);
-        expect(result.previous).to.be.null;
-        expect(result.results.length).to.be.equal(5);
-    })
-    it("should throw if an an error occurs", async function () {
-        axiosStub.throws("ksdfs");
-        try {
-            await Movie.getAll();
-        } catch (error) {
-            expect(error.message).to.be.equal("Some error occured");
-            expect(error.statusCode).to.be.equal(500);
-        }
-    })
-    after(async function() {
-        axiosStub.restore();
-    })
+    describe('addComment Service', () => {
+        before(async function () {
+            sinon.stub(publicIp, "v4").returns("46.5.21.12345");
+        })
+        it("should successfully post a comment on a movie", async function () {
+            const data = {
+                movieId: 1,
+                comment: "Some comment"
+            }
+            const newComment = await Movie.addComment(data)
+
+            expect(newComment.publicIp).to.be.equal("46.5.21.12345")
+            expect(newComment.movieId).to.be.equal(data.movieId)
+            expect(newComment.comment).to.be.equal(data.comment)
+            await newComment.destroy()
+        })
+        after(async function () {
+            publicIp.v4.restore();
+        })
+    })//end of addComment Service
 })
+

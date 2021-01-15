@@ -14,6 +14,10 @@
         {
             "name": "movies",
             "description": "Everything about movies"
+        },
+        {
+            "name": "comments",
+            "description": "Everything about movie comments"
         }
     ],
     "schemes": ["http"],
@@ -35,7 +39,49 @@
                     }
                 }
             }
+        },
+        "/movies/comment/add": {
+            "post": {
+                "tags": ["comments"],
+                "summary": "Post a comment on a movie",
+                "description": "Endpoint to post a comment on a movie",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/postComment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{success: true, message: '', data: comment}"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
         }
     },
-    "definitions": {}
+    "definitions": {
+        "postComment": {
+            "required": ["movieId", "comment"],
+            "properties": {
+                "movieId": {
+                    "type": "number",
+                    "description": "Episode Id of a Movie",
+                    "default": 1
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Your anonymous comment",
+                    "default": "Movie Comment"
+                }
+            }
+        }
+    }
 }

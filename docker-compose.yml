@@ -28,6 +28,7 @@ services:
       DB_DATABASE: swapi_db
       DB_USERNAME: root
       DB_PASSWORD: password
+      TEST_DB_DATABASE: swapi_db_test
     ports:
       -  "3000:3000"
     depends_on:
