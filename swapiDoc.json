@@ -8,7 +8,7 @@
             "email": "aboderinemmanuel@gmail.com"
         }
     },
-    "host": "localhost:3000",
+    "host": "swapi-backend.herokuapp.com",
     "basePath": "/v1",
     "tags": [
         {
@@ -20,7 +20,7 @@
             "description": "Everything about movie comments"
         }
     ],
-    "schemes": ["http"],
+    "schemes": ["http", "https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
