@@ -30,7 +30,7 @@ app.use(helmet());
 app.use(hpp());
 
 //api documentation
-app.use("/api-docs", function(req, res, next){
+app.use("/", function(req, res, next){
     swaggerDocument.host = req.get('host');
     swaggerDocument.schemes = process.env.NODE_ENV === "production" ? ["https"]: ["http"]
     req.swaggerDoc = swaggerDocument;
