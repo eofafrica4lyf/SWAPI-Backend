@@ -16,13 +16,14 @@ class Movie{
              * */
             movies.data.results = await Promise.all(movies.data.results.sort((a, b) => 
                 (new Date(a.release_date) - new Date(b.release_date)))
-                .map( async ({episode_id, opening_crawl}) => {
+                .map( async ({title, episode_id, opening_crawl}) => {
                     let comment_count = await models.comment.count({
                         where: {
                             movieId: episode_id
                         }
                     })
                     return {
+                        title,
                         comment_count, 
                         episode_id, 
                         opening_crawl
