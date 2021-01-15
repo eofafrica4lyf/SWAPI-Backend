@@ -18,6 +18,10 @@
         {
             "name": "comments",
             "description": "Everything about movie comments"
+        },
+        {
+            "name": "characters",
+            "description": "Everything about movie characters"
         }
     ],
     "schemes": ["https"],
@@ -92,7 +96,7 @@
         },
         "/movies/{movieId}/characters": {
             "get": {
-                "tags": ["comments"],
+                "tags": ["characters"],
                 "summary": "Get all characters on a movie",
                 "description": "Endpoint to get all characters on a movie",
                 "produces": ["application/json"],
