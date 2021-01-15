@@ -1,5 +1,7 @@
 const axios = require("../axios");
-const ErrorHandler = require("../utils/ErrorHandler")
+const ErrorHandler = require("../utils/ErrorHandler");
+const publicIp = require("public-ip")
+const models = require("../models");
 
 class Movie{
     /**
@@ -19,6 +21,19 @@ class Movie{
         } catch (error) {
             throw new ErrorHandler("Some error occured", 500)
         }
+    }
+
+    /**
+     * @desc Post a comment on a movie
+     * @param {*} data
+     */
+    static async addComment ({ movieId, comment }) {
+        const ip = await publicIp.v4();
+        return await models.comment.create({
+            movieId,
+            comment,
+            publicIp: ip
+        })
     }
 }
 
