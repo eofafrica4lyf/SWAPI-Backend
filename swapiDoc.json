@@ -89,6 +89,54 @@
                     }
                 }
             }
+        },
+        "/movies/{movieId}/characters": {
+            "get": {
+                "tags": ["comments"],
+                "summary": "Get all characters on a movie",
+                "description": "Endpoint to get all characters on a movie",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "movieId",
+                        "in": "path",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort by either 'name' or 'height'",
+                        "required": true,
+                        "type": "string",
+                        "enum": ["name", "height"]
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Order in ASC or DESC order'",
+                        "required": true,
+                        "type": "string",
+                        "enum": ["ASC", "DESC"]
+                    },
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Filter by gender: 'male' or 'female', 'hermaphrodite', or 'n/a'",
+                        "required": true,
+                        "type": "string",
+                        "enum": ["all", "male", "female", "hermaphrodite", "n/a"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{success: true, message: '', data: movieCharacters}"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
         }
     },
     "definitions": {
