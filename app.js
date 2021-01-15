@@ -30,7 +30,12 @@ app.use(helmet());
 app.use(hpp());
 
 //api documentation
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use("/api-docs", function(req, res, next){
+    swaggerDocument.host = req.get('host');
+    swaggerDocument.schemes = process.env.NODE_ENV === "production" ? ["https"]: ["http"]
+    req.swaggerDoc = swaggerDocument;
+    next();
+}, swaggerUi.serve, swaggerUi.setup())
 
 //all routes
 app.use("/v1", allRoutes)

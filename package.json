@@ -14,6 +14,7 @@
   },
   "nyc": {
     "include": [
+      "controllers",
       "services",
       "test",
       "utils",
