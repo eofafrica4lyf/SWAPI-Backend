@@ -1,7 +1,7 @@
 # SWAPI-Backend
 Live Link: https://swapi-backend.herokuapp.com/
 
-Swagger Doc: https://swapi-backend.herokuapp.com/
+Swagger Doc: https://swapi-backend.herokuapp.com/api-docs
 
 ## Routes
 - **GET v1/movies** 
